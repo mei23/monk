@@ -36,11 +36,11 @@ declare module "monk" {
 
   // Inputs
   type SingleMulti = { single?: boolean; multi?: boolean };
-  type CreateIndexInput<T> = string | { [key in keyof T]?: 1 | -1 };
+  type CreateIndexInput<T> = TFields | { [key in keyof T]?: 1 | -1 };
   type CollectionInsertOneOptionsMonk = CollectionInsertOneOptions & {
     castIds: boolean;
   };
-  type DropIndexInput<T> = CreateIndexInput<T> & string[];
+  type DropIndexInput<T> = CreateIndexInput<T>;
   type DropIndexOptions = CommonOptions & { maxTimeMS?: number };
   type FindOptions = FindOneOptions & { rawCursor?: boolean };
   type RemoveOptions = CommonOptions & SingleMulti;
