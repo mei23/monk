@@ -45,6 +45,7 @@ declare module "monk" {
   type FindOptions = FindOneOptions & { rawCursor?: boolean };
   type RemoveOptions = CommonOptions & SingleMulti;
   type StatsOptions = { scale: number; session?: ClientSession };
+  type UpdateOptions = UpdateOneOptions & { multi?: boolean; single?: boolean; replaceOne?: boolean; }
 
   // Returns
   type DropResult = "ns not found" | true;
@@ -330,12 +331,12 @@ declare module "monk" {
     update(
       query: FilterQuery<T>,
       update: UpdateQuery<T> | Partial<T>,
-      options?: UpdateOneOptions
+      options?: UpdateOptions,
     ): Promise<UpdateWriteOpResult>;
     update(
       query: FilterQuery<T>,
       update: UpdateQuery<T> | Partial<T>,
-      options: UpdateOneOptions,
+      options: UpdateOptions,
       callback: Callback<UpdateWriteOpResult>
     ): void;
   }
